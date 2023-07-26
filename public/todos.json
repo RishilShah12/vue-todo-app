@@ -1,0 +1,10 @@
+[
+    {
+        "text": "Todo #1 Do your Homework",
+        "isChecked": true
+    },
+    {
+        "text": "Todo #2 Complete Project",
+        "isChecked": false
+    }
+]
