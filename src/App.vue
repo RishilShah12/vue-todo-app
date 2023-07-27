@@ -1,7 +1,7 @@
 <template>
   <h1 id="heading">Todo List</h1>
   <create-todo @new-todo="pushTodo" />
-  <todo-lists :todos="this.todos" />
+  <todo-lists :todos="this.todos" @deleteTodo="updateTodo" />
 </template>
 
 <script>
@@ -13,33 +13,28 @@ export default {
     CreateTodo,
     TodoLists,
   },
-  // created() {
-  //   this.getTodos()
-  // },
+  created() {
+    this.getTodos()
+  },
   data() {
     return {
-      todos: [
-        {
-          "text": "Todo #1 Do your Homework",
-          "isChecked": true
-        },
-        {
-          "text": "Todo #2 Complete Project",
-          "isChecked": false
-        }
-      ]
+      todos: []
     }
   },
   methods: {
-    // async getTodos() {
-    //   let res = await fetch('todos.json');
-    //   let data = await res.json();
-    //   this.todos = data;
-    // },
+    async getTodos() {
+      let res = await fetch('todos.json');
+      let data = await res.json();
+      this.todos = data;
+    },
 
     pushTodo(todoObj) {
       this.todos.unshift(todoObj)
     },
+
+    updateTodo(todoObj) {
+      this.todos = this.todos.filter(todo => todo.text != todoObj.text)
+    }
   }
 }
 </script>

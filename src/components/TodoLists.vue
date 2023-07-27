@@ -1,7 +1,7 @@
 <template>
     <ul>
         <li v-for="todo in todos" :key="todo.text">
-            <todo-view :todo="todo" />
+            <todo-view :todo="todo" @deleteTodo="(data) => this.$emit('deleteTodo', data)" />
         </li>
     </ul>
 </template>
