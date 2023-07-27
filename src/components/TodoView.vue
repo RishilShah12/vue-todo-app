@@ -1,6 +1,6 @@
 <template>
     <div>
-        <input type="checkbox" :checked="this.isChecked" v-model="checke">
+        <input type="checkbox" v-model="checked">
         <p :class="completedClass">{{ todo.text }}</p>
     </div>
 </template>
@@ -8,19 +8,19 @@
 <script>
 
 export default {
-    props: ['todo', 'isChecked'],
+    props: ['todo'],
     data() {
         return {
-            checke: this.isChecked,
+            checked: this.todo.isChecked,
         }
     },
     computed: {
         completedClass() {
             return {
-                strike: this.checke
+                strike: this.checked
             }
         },
-    }
+    },
 }
 </script>
 

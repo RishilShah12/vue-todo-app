@@ -2,7 +2,7 @@
     <div id="createTodo">
         <form autocomplete="off">
             <input type="text" id="todo" size="50" v-model="text">
-            <button @click.prevent="() => this.text = ''">Create</button>
+            <button @click.prevent="createNewTodo">Create</button>
         </form>
     </div>
 </template>
@@ -12,6 +12,15 @@ export default {
     data() {
         return {
             text: ''
+        }
+    },
+    methods: {
+        createNewTodo() {
+            this.$emit('newTodo', {
+                text: this.text,
+                isChecked: false
+            })
+            this.text = ''
         }
     }
 }

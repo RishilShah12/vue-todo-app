@@ -1,7 +1,7 @@
 <template>
     <ul>
-        <li v-for="(todo, index) in todos" :key="index">
-            <todo-view :todo="todo" :is-checked="todo.isChecked" />
+        <li v-for="todo in todos" :key="todo.text">
+            <todo-view :todo="todo" />
         </li>
     </ul>
 </template>
@@ -10,28 +10,10 @@
 import TodoView from './TodoView.vue';
 
 export default {
+    props: ['todos'],
     components: {
         TodoView,
     },
-    created() {
-        this.getTodos()
-    },
-    data() {
-        return {
-            todos: [],
-        }
-    },
-    methods: {
-        async getTodos() {
-            let res = await fetch('todos.json');
-            let data = await res.json();
-            this.todos = data;
-        },
-
-        // pushTodos() {
-        // this.todos.push()
-        // }
-    }
 }
 </script>
 
